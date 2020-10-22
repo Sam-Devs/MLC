@@ -75,27 +75,36 @@ export default () => {
               "transition duration-500 ease-in-out delay-500 py-4",
               clicked ? "opacity-100" : "opacity-0"
             )}
-            href="https://leadwallet.io/token"
+            href="https://www.multichannel.tech/2"
           >
-            The Token
+            Features
           </a>
           <a
             className={cx(
               "transition duration-500 ease-in-out delay-500 py-4",
               clicked ? "opacity-100" : "opacity-0"
             )}
-            href="https://leadwallet.io/team"
+            href="https://www.multichannel.tech/3"
           >
-            Team
+            Project
           </a>
           <a
             className={cx(
               "transition duration-500 ease-in-out delay-500 py-4",
               clicked ? "opacity-100" : "opacity-0"
             )}
-            href="https://leadwallet.io/contactus"
+            href="https://www.multichannel.tech/4"
           >
-            Contact Us
+            Road Map
+          </a>
+          <a
+            className={cx(
+              "transition duration-500 ease-in-out delay-500 py-4",
+              clicked ? "opacity-100" : "opacity-0"
+            )}
+            href="https://www.multichannel.tech/6"
+          >
+            Tokens
           </a>
         </div>
       </div>
