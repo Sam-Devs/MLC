@@ -59,14 +59,14 @@ body {
 }
 
 .home-gradient {
-  background: transparent linear-gradient(180deg, #12072b 0%, #cc1962 100%) 0%
+  background: transparent linear-gradient(180deg, #0d469f 0%, #0d469f 100%) 0%
     0% no-repeat padding-box;
   opacity: 1;
   height: 8000px;
 }
 
 .contactus-gradient {
-  background: transparent linear-gradient(180deg, #12072b 0%, #cc1962 100%) 0%
+  background: transparent linear-gradient(180deg, #0d469f 0%, #0d469f 100%) 0%
     0% no-repeat padding-box;
   opacity: 1;
   height: 3000px;
@@ -77,7 +77,7 @@ body {
 }
 
 .token-gradient {
-  background: transparent linear-gradient(180deg, #12072b 0%, #cc1962 100%) 0%
+  background: transparent linear-gradient(180deg, #0d469f 0%, #0d469f 100%) 0%
     0% no-repeat padding-box;
   opacity: 1;
   height: 6000px;
@@ -180,5 +180,13 @@ body {
   stroke-dashoffset: -134;
   stroke-width: 6;
 }
-
+.buttons {
+  background: rgba(45,193,201,1);
+  background: -moz-linear-gradient(left, rgba(45,193,201,1) 0%, rgba(57,100,208,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(45,193,201,1)), color-stop(100%, rgba(57,100,208,1)));
+  background: -webkit-linear-gradient(left, rgba(45,193,201,1) 0%, rgba(57,100,208,1) 100%);
+  background: -o-linear-gradient(left, rgba(45,193,201,1) 0%, rgba(57,100,208,1) 100%);
+  background: -ms-linear-gradient(left, rgba(45,193,201,1) 0%, rgba(57,100,208,1) 100%);
+  background: linear-gradient(to right, rgba(45,193,201,1) 0%, rgba(57,100,208,1) 100%);
+  }
 @tailwind utilities;

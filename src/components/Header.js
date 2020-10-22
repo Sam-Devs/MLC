@@ -42,14 +42,14 @@ export default () => {
     <header className="container px-4 mx-auto py-4">
       <div className="flex flex-row justify-between items-center relative">
         <a
-          href="https://leadwallet.io"
+          href="https://www.multichannel.tech/"
           className="logo flex flex-row items-center"
         >
           <img
-            src="/images/full-logo.png"
+            src="/images/logo.png"
             width="180"
             className="cursor-pointer"
-            alt="LEAD"
+            alt="MLC"
           />
         </a>
         <div className="cursor-pointer">{renderButton()}</div>

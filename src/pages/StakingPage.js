@@ -342,7 +342,7 @@ const HomePage = () => {
           </div>
         </Modal>
       )}
-      <div className="relative z-20 w-full top-0">
+      {/* <div className="relative z-20 w-full top-0">
         <img
           src="/images/nosiy.png"
           alt=""
@@ -353,7 +353,7 @@ const HomePage = () => {
           alt=""
           className="absolute z-10 second-noisy"
         />
-      </div>
+      </div> */}
 
       <div className="relative z-10 w-full top-0">
         <div className="absolute w-full home-gradient"></div>
@@ -367,7 +367,7 @@ const HomePage = () => {
             <div className="w-full py-6 text-center">
               
               <Button
-                className="w-full md:w-2/5 text-2xl flex flex-row justify-center mx-auto"
+                className="w-full md:w-2/5 text-2xl flex flex-row justify-center mx-auto buttons"
                 uppercase={false}
                 onClick={async () => await init()}
               >
@@ -376,7 +376,7 @@ const HomePage = () => {
               </Button>
 
               <div className="text-white text-center mt-6 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold">
-              <h1>LEAD STAKING</h1>
+              <h1>MLC STAKING</h1>
               </div>
               <div className="w-full md:w-3/6 justify-center mx-auto mt-6">  
                 <Card title="Rules">
@@ -386,13 +386,13 @@ const HomePage = () => {
                           1. Connect your MetaMask wallet to participate
                         </li>
                         <li>
-                          2. Stake LEAD tokens and earn daily returns from allocated pool
+                          2. Stake MLC tokens and earn daily returns from allocated pool
                         </li>
                         <li>
                           3. Withdraw earned rewards anytime
                         </li>
                         <li>
-                          4. Unstake LEAD tokens anytime
+                          4. Unstake MLC tokens anytime
                         </li>
                         <li>
                           5. Earn extra rewards by referring new members

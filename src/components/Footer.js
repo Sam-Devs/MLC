@@ -7,70 +7,70 @@ export default () => {
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
           <div>
             <a
-              href="https://leadwallet.io/"
+              href="https://www.multichannel.tech/index.html"
               className="logo flex flex-row items-center"
             >
               <img
-                src="/images/full-logo-footer.png"
+                src="/images/logo.png"
                 width="220"
                 className="cursor-pointer"
-                alt="LEAD"
+                alt="MLC"
               />
             </a>
             <div className="uppercase text-white text-md mb-3 mt-4 text-left">
               Follow Us
             </div>
             <div className="flex flex-row items-center ">
-              <a
+              {/* <a
                 href="https://instagram.com/lead_wallet"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mr-4"
               >
                 <img src="/images/sm-instagram.svg" alt="" width="20" />
-              </a>
-              <a
+              </a> */}
+              {/* <a
                 href="https://www.linkedin.com/company/leadwallet"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mr-4"
               >
                 <img src="/images/sm-linkedin.svg" alt="" width="20" />
-              </a>
+              </a> */}
               <a
-                href="https://twitter.com/leadwallet"
+                href="https://twitter.com/Multichannel_"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mr-4"
               >
                 <img src="/images/sm-twitter.svg" alt="" width="20" />
               </a>
-              <a
+              {/* <a
                 href="https://www.reddit.com/r/LeadWallet"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mr-4"
               >
                 <img src="/images/sm-reddit.svg" alt="" width="20" />
-              </a>
-              <a
+              </a> */}
+              {/* <a
                 href="https://github.com/leadwallet"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mr-4"
               >
                 <img src="/images/sm-github.svg" alt="" width="20" />
-              </a>
-              <a
+              </a> */}
+              {/* <a
                 href="https://medium.com/@LeadWallet"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mr-4"
               >
                 <img src="/images/sm-medium.svg" alt="" width="20" />
-              </a>
+              </a> */}
               <a
-                href="https://t.me/Leadwallet"
+                href="https://t.me/MC_Network"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mr-4"
@@ -78,12 +78,12 @@ export default () => {
                 <img src="/images/sm-telegram.svg" alt="" width="20" />
               </a>
               <a
-                href="https://discord.gg/62Zh9Ch"
+                href="info@multichannel.tech"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mr-4"
               >
-                <img src="/images/sm-discord.svg" alt="" width="20" />
+                <img src="/images/email.svg" alt="" width="20" />
               </a>
             </div>
           </div>
@@ -96,16 +96,17 @@ export default () => {
           </div> */}
           <div className="text-white leading-7 text-xs cursor-pointer flex flex-col">
             <a
-              href="https://leadwallet.io/aboutus"
+              href="https://www.multichannel.tech/1"
               className="font-Montserrat-ExtraBold uppercase"
             >
               About Us
             </a>
             {/* <div>Project</div> */}
-            <a href="https://leadwallet.io/contactus">Contact Us</a>
-            <a href="https://leadwallet.io/team">Team</a>
+            <a href="https://www.multichannel.tech/2">Feature</a>
+            <a href="https://www.multichannel.tech/3">Project</a>
             {/* <div>Ecosystem</div> */}
-            <a href="https://leadwallet.io/token">The Token</a>
+            <a href="https://www.multichannel.tech/4">The Road Map</a>
+            <a href="https://www.multichannel.tech/6">The Tokens</a>
           </div>
           {/* <div className="text-white leading-7 text-xs cursor-pointer">
             <div className="font-Montserrat-ExtraBold uppercase">Solutions</div>
@@ -119,21 +120,21 @@ export default () => {
               Documentation
             </div>
             <a
-              href="https://leadwallet.io/en/docs/White Paper v1_0_2.pdf"
+              href="#https://leadwallet.io/en/docs/White Paper v1_0_2.pdf"
               target="_blank"
               rel="noopener noreferrer"
             >
               Whitepaper
             </a>
             <a
-              href="https://leadwallet.io/en/docs/Privacy Policy.pdf"
+              href="#https://leadwallet.io/en/docs/Privacy Policy.pdf"
               target="_blank"
               rel="noopener noreferrer"
             >
               Privacy Policy
             </a>
             <a
-              href="https://leadwallet.io/en/docs/Terms of Service.pdf"
+              href="#https://leadwallet.io/en/docs/Terms of Service.pdf"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -143,7 +144,7 @@ export default () => {
         </div>
         <div className="footer-copyright text-center py-3 text-white">
         <div fluid>
-          &copy; {new Date().getFullYear()} Copyright: <a href="#"> Lead Cyber Service Limited </a>
+          &copy; {new Date().getFullYear()} Copyright: <a href="#"> MultiChannel Tech </a>
         </div>
       </div>
       </footer>
