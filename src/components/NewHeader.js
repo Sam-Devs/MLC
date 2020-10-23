@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import ReactNavbar from "react-responsive-animate-navbar";
-
+import {ReactNavbar} from "react-responsive-animate-navbar"
 class NewHeader extends Component {
     state = {  }
     render() { 

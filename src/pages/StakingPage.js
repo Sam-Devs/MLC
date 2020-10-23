@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
+// import NewHeader from "../components/NewHeader";
 import Footer from "../components/Footer";
 import Button from "../components/common/Button";
 import Modal from "../components/common/Modal";
@@ -57,17 +58,17 @@ const HomePage = () => {
 
     const accounts = await web3.eth.getAccounts();
     const networkId = await web3.eth.net.getId();
-    if (networkId !== 3) {
+    if (networkId !== 1) {
       setError("Please connect Mainnet account");
       setLoading(false);
       return;
-    }
+    } 
 
     // In as much as I am using the same endpoint, then the address should be the same, but you provided a new address as mcnToken for both testnet and mainnet
     // mcnToken methods
     const mcnToken = new web3.eth.Contract(
       ERC20.abi,
-      "0x1dd80016e3d4ae146ee2ebb484e8edd92dacc4ce"
+      "0xc047C42554c6495c85108aE8ee66fA4E3B88176d"
     ); //mainnet address for MCN token
     // total supply
     const totalSupply = await mcnToken.methods.totalSupply().call();
@@ -77,7 +78,7 @@ const HomePage = () => {
     // mcnStake methods
     const mcnStake = new web3.eth.Contract(
       MCNStake.abi,
-      "0x80622Bc361624536aD3Fc653A37361DFBCeEcbb8"
+      "0xbb02a5552f14822420b4074c44cbd46a85038a89"
     ); //mainnet adddress for staking dapp
     const totalStaked = await mcnStake.methods.totalStaked().call();
     const minStake = await mcnStake.methods.minimumStakeValue().call();
@@ -125,7 +126,7 @@ const HomePage = () => {
       if (window.ethereum) {
         if (
           window.ethereum.selectedAddress &&
-          window.ethereum.networkVersion === "3"
+          window.ethereum.networkVersion === "1"
         ) {
           await init();
         }
@@ -249,7 +250,7 @@ const HomePage = () => {
     try {
       let ref = referrer;
       await mcnToken.methods
-        .approve("0x80622Bc361624536aD3Fc653A37361DFBCeEcbb8", arg)
+        .approve("0xbb02a5552f14822420b4074c44cbd46a85038a89", arg)
         .send({ from: accounts[0] });
       if (!ref || ref.length !== 42)
         ref = "0x0000000000000000000000000000000000000000";
@@ -272,7 +273,7 @@ const HomePage = () => {
     const arg = fromExponential(actual);
     try {
       await mcnToken.methods
-        .approve("0x80622Bc361624536aD3Fc653A37361DFBCeEcbb8", arg)
+        .approve("0xbb02a5552f14822420b4074c44cbd46a85038a89", arg)
         .send({ from: accounts[0] });
         
       await mcnStake.methods.stake(arg).send({ from: accounts[0] });
@@ -366,7 +367,8 @@ const HomePage = () => {
       </div>
 
       <div className="relative w-full z-30">
-        <Header />
+      <Header />
+        {/* <NewHeader /> */}
 
         <div className="container mx-auto pb-18 px-4 force-height">
           {!accounts && (
@@ -382,7 +384,7 @@ const HomePage = () => {
               </Button>
 
               <div className="text-white text-center mt-6 text-base sm:text-lg md:text-xl lg:text-2xl xl:text-3xl font-bold">
-              <h1>MLC STAKING</h1>
+              <h1>MCN STAKING</h1>
               </div>
               <div className="w-full md:w-3/6 justify-center mx-auto mt-6">  
                 <Card title="Rules">
@@ -392,13 +394,13 @@ const HomePage = () => {
                           1. Connect your MetaMask wallet to participate
                         </li>
                         <li>
-                          2. Stake MLC tokens and earn daily returns from allocated pool
+                          2. Stake MCN tokens and earn daily returns from allocated pool
                         </li>
                         <li>
                           3. Withdraw earned rewards anytime
                         </li>
                         <li>
-                          4. Unstake MLC tokens anytime
+                          4. Unstake MCN tokens anytime
                         </li>
                         <li>
                           5. Earn extra rewards by referring new members
