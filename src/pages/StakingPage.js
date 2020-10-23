@@ -6,7 +6,7 @@ import Modal from "../components/common/Modal";
 import Card from "../components/common/Card";
 import Spinner from "../components/common/Spinner";
 import { initWeb3 } from "../utils.js";
-import LeadStake from "../contracts/LeadStake.json";
+import MCNStake from "../contracts/MCNStake.json";
 import ERC20 from "../contracts/ERC20.json";
 import fromExponential from "from-exponential";
 
@@ -18,8 +18,8 @@ const HomePage = () => {
   const [error, setError] = useState("");
   const [web3, setWeb3] = useState();
   const [accounts, setAccounts] = useState();
-  const [leadStake, setLeadStake] = useState();
-  const [leadToken, setLeadToken] = useState();
+  const [mcnStake, setMcnStake] = useState();
+  const [mcnToken, setMcnToken] = useState();
   const [totalSupply, setTotalSupply] = useState();
   const [balance, setBalance] = useState();
   const [totalStaked, setTotalStaked] = useState();
@@ -39,6 +39,7 @@ const HomePage = () => {
   const [unstakeAmount, setUnstakeAmount] = useState();
   const [referrer, setReferrer] = useState();
   const [showModal, setShowModal] = useState(false);
+
   const init = async () => {
     if (isReady()) {
       return;
@@ -56,41 +57,46 @@ const HomePage = () => {
 
     const accounts = await web3.eth.getAccounts();
     const networkId = await web3.eth.net.getId();
-    if (networkId !== 1) {
+    if (networkId !== 3) {
       setError("Please connect Mainnet account");
       setLoading(false);
       return;
     }
 
-    const leadToken = new web3.eth.Contract(
+    // In as much as I am using the same endpoint, then the address should be the same, but you provided a new address as mcnToken for both testnet and mainnet
+    // mcnToken methods
+    const mcnToken = new web3.eth.Contract(
       ERC20.abi,
       "0x1dd80016e3d4ae146ee2ebb484e8edd92dacc4ce"
-    ); //mainnet address for lead token
-    const totalSupply = await leadToken.methods.totalSupply().call();
-    const balance = await leadToken.methods.balanceOf(accounts[0]).call();
+    ); //mainnet address for MCN token
+    // total supply
+    const totalSupply = await mcnToken.methods.totalSupply().call();
+    // check balance
+    const balance = await mcnToken.methods.balanceOf(accounts[0]).call();
 
-    const leadStake = new web3.eth.Contract(
-      LeadStake.abi,
-      "0x786A20fA02e4672d550BccF0BfFf118CAAE519e6"
+    // mcnStake methods
+    const mcnStake = new web3.eth.Contract(
+      MCNStake.abi,
+      "0x80622Bc361624536aD3Fc653A37361DFBCeEcbb8"
     ); //mainnet adddress for staking dapp
-    const totalStaked = await leadStake.methods.totalStaked().call();
-    const minStake = await leadStake.methods.minimumStakeValue().call();
-    const stakingTax = await leadStake.methods.stakingTaxRate().call();
-    const unstakingTax = await leadStake.methods.unstakingTaxRate().call();
-    const registrationTax = await leadStake.methods.registrationTax().call();
-    const referralRewards = await leadStake.methods
+    const totalStaked = await mcnStake.methods.totalStaked().call();
+    const minStake = await mcnStake.methods.minimumStakeValue().call();
+    const stakingTax = await mcnStake.methods.stakingTaxRate().call();
+    const unstakingTax = await mcnStake.methods.unstakingTaxRate().call();
+    const registrationTax = await mcnStake.methods.registrationTax().call();
+    const referralRewards = await mcnStake.methods
       .referralRewards(accounts[0])
       .call();
-    const referralCount = await leadStake.methods
+    const referralCount = await mcnStake.methods
       .referralCount(accounts[0])
       .call();
-    const dailyROI = await leadStake.methods.dailyROI().call();
-    const status = await leadStake.methods.registered(accounts[0]).call();
+    const dailyROI = await mcnStake.methods.dailyROI().call();
+    const status = await mcnStake.methods.registered(accounts[0]).call();
 
     setWeb3(web3);
     setAccounts(accounts);
-    setLeadStake(leadStake);
-    setLeadToken(leadToken);
+    setMcnStake(mcnStake);
+    setMcnToken(mcnToken);
     setTotalSupply(totalSupply);
     setBalance(balance);
     setTotalStaked(totalStaked);
@@ -111,7 +117,7 @@ const HomePage = () => {
   };
 
   const isReady = () => {
-    return !!leadStake && !!web3 && !!accounts;
+    return !!mcnStake && !!web3 && !!accounts;
   };
 
   useEffect(() => {
@@ -119,7 +125,7 @@ const HomePage = () => {
       if (window.ethereum) {
         if (
           window.ethereum.selectedAddress &&
-          window.ethereum.networkVersion === "1"
+          window.ethereum.networkVersion === "3"
         ) {
           await init();
         }
@@ -146,20 +152,20 @@ const HomePage = () => {
     if (isReady()) {
       updateAll();
     }
-  }, [leadStake, leadToken, web3, accounts]);
+  }, [mcnStake, mcnToken, web3, accounts]);
 
   async function updateStakes() {
-    const stake = await leadStake.methods.stakes(accounts[0]).call();
+    const stake = await mcnStake.methods.stakes(accounts[0]).call();
     setStakes(stake);
     return stake;
   }
 
   async function updateReferrals() {
-    if (leadToken) {
-      const referralRewards = await leadStake.methods
+    if (mcnToken) {
+      const referralRewards = await mcnStake.methods
         .referralRewards(accounts[0])
         .call();
-      const referralCount = await leadStake.methods
+      const referralCount = await mcnStake.methods
         .referralCount(accounts[0])
         .call();
       setReferralRewards(referralRewards);
@@ -168,32 +174,32 @@ const HomePage = () => {
   }
 
   async function updateAccountBalance() {
-    if (leadToken) {
-      const balance = await leadToken.methods.balanceOf(accounts[0]).call();
+    if (mcnToken) {
+      const balance = await mcnToken.methods.balanceOf(accounts[0]).call();
       setBalance(balance);
       return balance;
     }
   }
 
   async function updateTotalSupply() {
-    if (leadToken) {
-      const totalSupply = await leadToken.methods.totalSupply().call();
+    if (mcnToken) {
+      const totalSupply = await mcnToken.methods.totalSupply().call();
       setTotalSupply(totalSupply);
       return totalSupply;
     }
   }
 
   async function updateTotalStaked() {
-    if (leadStake) {
-      const totalStaked = await leadStake.methods.totalStaked().call();
+    if (mcnStake) {
+      const totalStaked = await mcnStake.methods.totalStaked().call();
       return totalStaked;
     }
   }
 
   async function minRegisteration() {
-    if (leadStake) {
-      const tax = parseInt(await leadStake.methods.registrationTax().call());
-      const value = parseInt(await leadStake.methods.minimumStakeValue().call());
+    if (mcnStake) {
+      const tax = parseInt(await mcnStake.methods.registrationTax().call());
+      const value = parseInt(await mcnStake.methods.minimumStakeValue().call());
       const sum = parseInt(tax / 1000000000000000000) + parseInt(value / 1000000000000000000);
       await setMinRegister(sum);
       return sum;
@@ -201,12 +207,12 @@ const HomePage = () => {
   }
 
   async function stakeRewards() {
-    if (leadStake) {
+    if (mcnStake) {
       const rewards = parseInt(
-        await leadStake.methods.stakeRewards(accounts[0]).call()
+        await mcnStake.methods.stakeRewards(accounts[0]).call()
       );
       const owing = parseInt(
-        await leadStake.methods.calculateEarnings(accounts[0]).call()
+        await mcnStake.methods.calculateEarnings(accounts[0]).call()
       );
       const sum = rewards + owing;
       await setStakeRewards(sum);
@@ -216,13 +222,13 @@ const HomePage = () => {
 
   async function totalReward() {
     const owing = parseInt(
-      await leadStake.methods.calculateEarnings(accounts[0]).call()
+      await mcnStake.methods.calculateEarnings(accounts[0]).call()
     );
     const recorded = parseInt(
-      await leadStake.methods.stakeRewards(accounts[0]).call()
+      await mcnStake.methods.stakeRewards(accounts[0]).call()
     );
     const referral = parseInt(
-      await leadStake.methods.referralRewards(accounts[0]).call()
+      await mcnStake.methods.referralRewards(accounts[0]).call()
     );
     const sum = owing + referral + recorded;
     await setTotalRewards(sum);
@@ -230,8 +236,8 @@ const HomePage = () => {
   }
 
   async function updateStatus() {
-    if (leadToken) {
-      const status = await leadStake.methods.registered(accounts[0]).call();
+    if (mcnToken) {
+      const status = await mcnStake.methods.registered(accounts[0]).call();
       setRegisteredStaus(status);
     }
   }
@@ -242,12 +248,12 @@ const HomePage = () => {
     const arg = fromExponential(actual);
     try {
       let ref = referrer;
-      await leadToken.methods
-        .approve("0x786A20fA02e4672d550BccF0BfFf118CAAE519e6", arg)
+      await mcnToken.methods
+        .approve("0x80622Bc361624536aD3Fc653A37361DFBCeEcbb8", arg)
         .send({ from: accounts[0] });
       if (!ref || ref.length !== 42)
         ref = "0x0000000000000000000000000000000000000000";
-      await leadStake.methods
+      await mcnStake.methods
         .registerAndStake(arg, ref)
         .send({ from: accounts[0] });
       await updateAll();
@@ -265,11 +271,11 @@ const HomePage = () => {
     const actual = amount * (10 ** 18);
     const arg = fromExponential(actual);
     try {
-      await leadToken.methods
-        .approve("0x786A20fA02e4672d550BccF0BfFf118CAAE519e6", arg)
+      await mcnToken.methods
+        .approve("0x80622Bc361624536aD3Fc653A37361DFBCeEcbb8", arg)
         .send({ from: accounts[0] });
         
-      await leadStake.methods.stake(arg).send({ from: accounts[0] });
+      await mcnStake.methods.stake(arg).send({ from: accounts[0] });
       await updateAll();
     } catch (err) {
       if (err.code !== 4001) {
@@ -282,14 +288,14 @@ const HomePage = () => {
 
   async function unstake() {
     if (parseFloat(stakes) === 0) {
-      console.error("You don't have any staked LEADs yet!");
+      console.error("You don't have any staked MCNs yet!");
       return;
     }
     setUnstakeLoading(true);
     const actual = unstakeAmount * (10 ** 18);
     const arg = fromExponential(actual);
     try {
-      await leadStake.methods
+      await mcnStake.methods
         .unstake(arg)
         .send({ from: accounts[0] });
       await updateAll();
@@ -309,7 +315,7 @@ const HomePage = () => {
     }
     setWithdrawLoading(true);
     try {
-      await leadStake.methods.withdrawEarnings().send({ from: accounts[0] });
+      await mcnStake.methods.withdrawEarnings().send({ from: accounts[0] });
       await updateAll();
     } catch (err) {
       if (err.code !== 4001) {
@@ -332,7 +338,7 @@ const HomePage = () => {
 
           <div className="my-2">
             Thanks for your support and feel free to{" "}
-            <a href="https://leadwallet.io/contactus" className="text-blue-500">
+            <a href="info@multichannel.tech" className="text-blue-500">
               contact us
             </a>
           </div>
@@ -421,7 +427,7 @@ const HomePage = () => {
           )}
           {accounts && (
             <div className="grid grid-col-1 md:grid-cols-2 gap-6 mt-10">
-              <Card title="Total Staked LEAD">
+              <Card title="Total Staked MCN">
                 <div className="flex flex-col pt-8 pb-4 text-white">
                   <div className="text-center">
                     <span className="text-white text-5xl">
@@ -430,7 +436,7 @@ const HomePage = () => {
                         1000000000000000000
                       ).toFixed(2)}
                     </span>
-                    <span className="text-white text-2xl ml-2">LEAD</span>
+                    <span className="text-white text-2xl ml-2">MCN</span>
                   </div>
                   <div className="text-center">
                     {(
@@ -451,7 +457,7 @@ const HomePage = () => {
                         <li>
                           Registration Fee:{"  "}
                           <span className="text-white text-2xl">
-                            {parseInt(registrationTax) / 1000000000000000000} LEAD
+                            {parseInt(registrationTax) / 1000000000000000000} MCN
                           </span>
                         </li>
                         <li>
@@ -469,7 +475,7 @@ const HomePage = () => {
                         <li>
                           Minimum Stake:{"  "}
                           <span className="text-white text-2xl">
-                            {parseInt(minStake) / 1000000000000000000} LEAD
+                            {parseInt(minStake) / 1000000000000000000} MCN
                           </span>
                         </li>
                       </ul>
@@ -486,19 +492,19 @@ const HomePage = () => {
                         Minimum amount needed:{" "}
                       </span>
                       <span className="text-white text-3xl">{parseInt(minRegister)}</span>
-                      <span className="text-white text-2xl ml-2">LEAD</span>
+                      <span className="text-white text-2xl ml-2">MCN</span>
                     </div>
                     <div className="text-center pb-4">
                       <span className="text-lg text-gray-400">
                         Available amount:{" "}
                       </span>
                       <span className="text-white text-3xl">{parseInt(parseInt(balance) / 1000000000000000000)}</span>
-                      <span className="text-white text-2xl ml-2">LEAD</span>
+                      <span className="text-white text-2xl ml-2">MCN</span>
                     </div>
                     <div className="rounded-md border-2 border-primary p-2 flex justify-between items-center">
                       <input
                         type="number"
-                        placeholder="LEAD To Stake"
+                        placeholder="MCN To Stake"
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
                         className="text-white font-extrabold flex-shrink text-2xl w-full bg-transparent focus:outline-none focus:bg-white focus:text-black px-2"
@@ -538,19 +544,19 @@ const HomePage = () => {
                         Minimum amount needed:{" "}
                       </span>
                       <span className="text-white text-3xl">{parseInt(minStake) / 1000000000000000000}</span>
-                      <span className="text-white text-2xl ml-2">LEAD</span>
+                      <span className="text-white text-2xl ml-2">MCN</span>
                     </div>
                     <div className="text-center pb-4">
                       <span className="text-lg text-gray-400">
                         Available amount:{" "}
                       </span>
                       <span className="text-white text-3xl">{parseInt(parseInt(balance) / 1000000000000000000)}</span>
-                      <span className="text-white text-2xl ml-2">LEAD</span>
+                      <span className="text-white text-2xl ml-2">MCN</span>
                     </div>
                     <div className="rounded-md border-2 border-primary p-2 flex justify-between items-center">
                       <input
                         type="number"
-                        placeholder="LEAD To Stake"
+                        placeholder="MCN To Stake"
                         value={amount}
                         onChange={(e) => setAmount(e.target.value)}
                         className="text-white font-extrabold flex-shrink text-2xl w-full bg-transparent focus:outline-none focus:bg-white focus:text-black px-2"
@@ -579,7 +585,7 @@ const HomePage = () => {
                     <span className="text-white text-5xl">
                       {(parseFloat(totalRewards) / 1000000000000000000).toFixed(2)}
                     </span>
-                    <span className="text-white text-2xl ml-2">LEAD</span>
+                    <span className="text-white text-2xl ml-2">MCN</span>
                   </div>
                   <div className="flex flex-row justify-center">
                     <Button
@@ -603,7 +609,7 @@ const HomePage = () => {
                         <span className="text-gray-400 text-lg">
                           Staking Reward:{" "}
                         </span>
-                        {parseFloat(stakingRewards) / 1000000000000000000} LEAD
+                        {parseFloat(stakingRewards) / 1000000000000000000} MCN
                       </div>
                       <div>
                         <span className="text-gray-400 text-lg">
@@ -617,7 +623,7 @@ const HomePage = () => {
                         <span className="text-gray-400 text-lg">
                           Referral Reward:
                         </span>{" "}
-                        {parseFloat(referralRewards) / 1000000000000000000} LEAD
+                        {parseFloat(referralRewards) / 1000000000000000000} MCN
                       </div>
                       <div>
                         <span className="text-gray-400 text-lg">
@@ -637,12 +643,12 @@ const HomePage = () => {
                         Available to unstake:{" "}
                       </span>
                       <span className="text-white text-3xl">{(parseFloat(stakes) / 1000000000000000000).toFixed()}</span>
-                      <span className="text-white text-2xl ml-2">LEAD</span>
+                      <span className="text-white text-2xl ml-2">MCN</span>
                     </div>
                   <div className="rounded-md border-2 border-primary p-2 flex justify-between items-center">
                     <input
                       type="number"
-                      placeholder="LEAD To Unstake"
+                      placeholder="MCN To Unstake"
                       value={unstakeAmount}
                       onChange={(e) => setUnstakeAmount(e.target.value)}
                       className="text-white font-extrabold flex-shrink text-2xl w-full bg-transparent focus:outline-none focus:bg-white focus:text-black px-2"
