@@ -30,12 +30,18 @@
     "extends": "react-app"
   },
   "scripts": {
-    "start": "run-s build:clean build:style react:start",
+    "start":"node server.js",
+    "dev:start": "run-s build:clean build:style react:start",
     "react:start": "react-scripts --max_old_space_size=4096 start",
     "react:build": "react-scripts --max_old_space_size=4096 build",
     "build:style": "tailwind build src/styles/index.css -o src/styles/tailwind.css",
     "build:clean": "rimraf ./build",
-    "build": "run-s build:clean build:style react:build"
+    "build": "run-s build:clean build:style react:build",
+    "postinstall": "npm build"
+  },
+  "engine":{
+    "node":"12.18.3",
+    "npm":"6.14.6"
   },
   "browserslist": {
     "production": [
