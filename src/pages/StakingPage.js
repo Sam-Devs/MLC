@@ -367,7 +367,7 @@ const HomePage = () => {
       </div>
 
       <div className="relative w-full z-30">
-      <Header />
+      {/* <Header /> */}
       {/* <header className="container px-4 mx-auto py-4">
         <NewHeader />
       </header> */}
@@ -417,11 +417,7 @@ const HomePage = () => {
                   <div className="flex flex-col px-2">
                     <div className="text-center pb-4">
                       <div className="text-white text-xs">
-                        <span className="text-blue-500">Disclaimer</span> Staking Smart Contract was audited by{" "}
-                        <a href="https://immunebytes.com/" target="_blank" className="text-blue-500">
-                          Immune Bytes
-                        </a>. Keep in mind that security audits don't fully eliminate all 
-                              possible security risks. Use our staking page at your own risk
+                        <span className="text-blue-500">Disclaimer</span> Please use this Staking DApp with caution. It hasn't undergone any third-party audit.
                       </div>
                     </div>
                   </div>
