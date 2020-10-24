@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
-// import NewHeader from "../components/NewHeader";
+import NewHeader from "../components/NewHeader";
 import Footer from "../components/Footer";
 import Button from "../components/common/Button";
 import Modal from "../components/common/Modal";
@@ -368,7 +368,9 @@ const HomePage = () => {
 
       <div className="relative w-full z-30">
       <Header />
-        {/* <NewHeader /> */}
+      {/* <header className="container px-4 mx-auto py-4">
+        <NewHeader />
+      </header> */}
 
         <div className="container mx-auto pb-18 px-4 force-height">
           {!accounts && (

@@ -4,7 +4,7 @@ export default () => {
   return (
     <div className="py-8 footer-bg">
       <footer className="container mx-auto px-4">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
+        {/* <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-4">
           <div>
             <a
               href="https://www.multichannel.tech/index.html"
@@ -21,22 +21,22 @@ export default () => {
               Follow Us
             </div>
             <div className="flex flex-row items-center ">
-              {/* <a
+              <a
                 href="https://instagram.com/lead_wallet"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mr-4"
               >
                 <img src="/images/sm-instagram.svg" alt="" width="20" />
-              </a> */}
-              {/* <a
+              </a>
+              <a
                 href="https://www.linkedin.com/company/leadwallet"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mr-4"
               >
                 <img src="/images/sm-linkedin.svg" alt="" width="20" />
-              </a> */}
+              </a>
               <a
                 href="https://twitter.com/Multichannel_"
                 target="_blank"
@@ -45,30 +45,30 @@ export default () => {
               >
                 <img src="/images/sm-twitter.svg" alt="" width="20" />
               </a>
-              {/* <a
+              <a
                 href="https://www.reddit.com/r/LeadWallet"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mr-4"
               >
                 <img src="/images/sm-reddit.svg" alt="" width="20" />
-              </a> */}
-              {/* <a
+              </a>
+              <a
                 href="https://github.com/leadwallet"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mr-4"
               >
                 <img src="/images/sm-github.svg" alt="" width="20" />
-              </a> */}
-              {/* <a
+              </a>
+              <a
                 href="https://medium.com/@LeadWallet"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mr-4"
               >
                 <img src="/images/sm-medium.svg" alt="" width="20" />
-              </a> */}
+              </a>
               <a
                 href="https://t.me/MC_Network"
                 target="_blank"
@@ -87,13 +87,13 @@ export default () => {
               </a>
             </div>
           </div>
-          {/* <div className="text-white leading-7 text-xs cursor-pointer">
+          <div className="text-white leading-7 text-xs cursor-pointer">
             <div className="font-Montserrat-ExtraBold uppercase">Products</div>
             <div>Business Console</div>
             <div>Settlement Layer</div>
             <div>Crypto Wallets</div>
             <div>LEAD Pride</div>
-          </div> */}
+          </div>
           <div className="text-white leading-7 text-xs cursor-pointer flex flex-col">
             <a
               href="https://www.multichannel.tech/1"
@@ -101,20 +101,20 @@ export default () => {
             >
               About Us
             </a>
-            {/* <div>Project</div> */}
+            <div>Project</div>
             <a href="https://www.multichannel.tech/2">Feature</a>
             <a href="https://www.multichannel.tech/3">Project</a>
-            {/* <div>Ecosystem</div> */}
+            <div>Ecosystem</div>
             <a href="https://www.multichannel.tech/4">The Road Map</a>
             <a href="https://www.multichannel.tech/6">The Tokens</a>
           </div>
-          {/* <div className="text-white leading-7 text-xs cursor-pointer">
+          <div className="text-white leading-7 text-xs cursor-pointer">
             <div className="font-Montserrat-ExtraBold uppercase">Solutions</div>
             <div>Grow Your Business with our Monetization</div>
             <div>Technology</div>
             <div>The PSP Solution</div>
             <div>Use Your Cryptocurrency</div>
-          </div> */}
+          </div>
           <div className="text-white leading-7 text-xs cursor-pointer flex flex-col">
             <div className="font-Montserrat-ExtraBold uppercase">
               Documentation
@@ -141,7 +141,7 @@ export default () => {
               Terms of Service
             </a>
           </div>
-        </div>
+        </div> */}
         <div className="footer-copyright text-center py-3 text-white">
         <div fluid>
           &copy; {new Date().getFullYear()} Copyright: <a href="#"> MultiChannel Tech </a>

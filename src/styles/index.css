@@ -57,7 +57,7 @@ body {
     height: 280px;
   }
 }
-
+/* 
 .home-gradient {
   background: transparent linear-gradient(180deg, #0d469f 0%, #0d469f 100%) 0%
     0% no-repeat padding-box;
@@ -70,7 +70,7 @@ body {
     0% no-repeat padding-box;
   opacity: 1;
   height: 3000px;
-}
+} */
 
 .force-height {
   min-height: calc(100vh - 318px);
