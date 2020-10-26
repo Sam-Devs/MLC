@@ -367,7 +367,7 @@ const HomePage = () => {
       </div>
 
       <div className="relative w-full z-30">
-      {/* <Header /> */}
+      <Header />
       {/* <header className="container px-4 mx-auto py-4">
         <NewHeader />
       </header> */}

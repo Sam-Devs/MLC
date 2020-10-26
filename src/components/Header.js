@@ -54,7 +54,7 @@ export default () => {
         </a>
         <div className="cursor-pointer">{renderButton()}</div>
       </div>
-      <div
+      {/* <div
         className={cx(
           "w-full h-full fixed inset-0 z-40  text-white font-Montserrat-ExtraBold uppercase flex-col justify-center text-4xl transition duration-500 ease-in-out",
           clicked ? "flex bg-black" : "hidden bg-transparent"
@@ -107,7 +107,7 @@ export default () => {
             Tokens
           </a>
         </div>
-      </div>
+      </div> */}
     </header>
   );
 };
